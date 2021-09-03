@@ -1,20 +1,29 @@
 <template>
-  <div id="app" class='corpo'>
-	<h1 class='centralizado'>{{ msg }}</h1>
-  <ul class='lista-fotos'>
-    <li class='lista-fotos-item' v-for="image of images">
-      <img v-bind:src="image.url" :title="image.titulo">
-    </li>
-  </ul>
+  <div>
+
+    <h1 class="centralizado">{{ titulo }}</h1>
+    <input type="search" class="filtro" placeholder="filtre pelo título da foto" v-on:input="filtro = $event.target.value" />
+    {{filtro}}
+    <ul class="lista-fotos">
+      <li class="lista-fotos-item" v-for="foto in images">
+        <meu-painel v-bind:titulo="foto.titulo">
+          <img class="imagem-responsiva" :src="foto.url" :alt="foto.titulo">
+        </meu-painel>
+      </li>
+    </ul>
+
   </div>
 </template>
 
 <script>
+import Painel from './components/shared/painel/Painel.vue';
 export default {
+  components:{'meu-painel':Painel},
   name: 'app',
   data () {
     return {
-      msg: 'Chaves {{}} de interpolação.',
+      filtro:"",
+      titulo:"Alurapic",
       images:[]
     }
   },
@@ -26,22 +35,29 @@ export default {
 </script>
 
 <style>
-  .corpo{
-    font-family: Helvetica, sans-sarif;
-    width:96%;
-    margin:0 auto;
+  .titulo {
+    text-align: center;
   }
-  .centralizado{
-    text-align:center;
+
+  .corpo {
+    font-family: Helvetica, sans-serif;
+    margin: 0 auto;
+    width: 96%;
   }
-  .lista-fotos{
-    list-style:none;
+
+  .lista-fotos {
+    list-style: none;
   }
-  .lista-fotos .lista-fotos-item{
-    display:inline;
+
+  .lista-fotos .lista-fotos-item {
+    display: inline-block;
   }
-  img{
-    height: 200px;
-    width: 200px;
+
+  .imagem-responsiva {
+    width: 100%;
+  }
+  .filtro {
+    display: block;
+    width: 100%;
   }
 </style>
