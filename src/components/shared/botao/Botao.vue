@@ -4,7 +4,20 @@
 <script>
 export default {
 
-   props: ['tipo', 'rotulo','confirmacao','estilo'],
+   props: {
+       tipo: {
+           type: String, 
+           required: true
+       },
+
+       rotulo: {
+           type: String, 
+           required: true
+       },
+
+       confirmacao: Boolean,
+       estilo: String
+   },
    computed:{
        estiloDoBotao(){
            return this.estilo == "padrao" || !this.estilo ? "botao-padrao" : "botao-perigo";
