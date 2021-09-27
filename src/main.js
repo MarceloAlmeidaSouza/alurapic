@@ -7,6 +7,9 @@ import './directives/Transforme'
 
 Vue.use(VueResource)
 Vue.use(VueRouter)
+
+Vue.http.options.root = "http://localhost:3000";
+
 var router = new VueRouter({
   routes:routes,
   mode:'history'
