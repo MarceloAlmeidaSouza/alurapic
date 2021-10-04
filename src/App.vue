@@ -18,7 +18,7 @@ export default {
   },
   data(){
     return {
-      routes
+      routes:routes.filter(m=>m.menu)
     }
   }
 }
