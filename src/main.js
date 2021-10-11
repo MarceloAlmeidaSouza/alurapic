@@ -4,7 +4,10 @@ import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import routes from './routes.js'
 import './directives/Transforme'
+import VeeValidate from 'vee-validate';
 
+
+Vue.use(VeeValidate);
 Vue.use(VueResource)
 Vue.use(VueRouter)
 

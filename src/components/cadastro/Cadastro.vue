@@ -5,11 +5,13 @@
   <div>
     <h1 class="centralizado">Cadastro</h1>
     <h2 class="centralizado"></h2>
-
+    <h1 v-if="foto._id" class="centralizado">Alteração</h1>
+    <h1 v-else class="centralizado">Inclusão</h1>
     <form @submit.prevent="grava">
       <div class="controle">
         <label for="titulo">TÍTULO</label>
-        <input id="titulo" autocomplete="off" v-model="foto.titulo">
+        <input name="titulo" v-validate data-vv-rules="required" id="titulo" autocomplete="off" v-model="foto.titulo">
+        <span v-show="errors.has('titulo')">ERRO</span>
       </div>
 
       <div class="controle">
@@ -54,7 +56,7 @@ export default {
     grava(){
       this.service
         .cadastra(this.foto)
-        .then(() => this.foto = new Foto(), err => console.log(err));
+        .then(() => {if(this.id) this.$router.push({ name: 'home'});this.foto = new Foto();}, err => console.log(err));
     }
   }, 
 
